@@ -56,6 +56,7 @@ const container = document.getElementById('root')
 const root = createRoot(container)
 
 root.render(
+    <Provider store={store}>
   <BrowserRouter>
     <Provider store={store}>
       <Suspense fallback={<Spinner />}>
@@ -68,6 +69,7 @@ root.render(
       </Suspense>
     </Provider>
   </BrowserRouter>
+    </Provider>
 )
 
 // If you want your app to work offline and load faster, you can change

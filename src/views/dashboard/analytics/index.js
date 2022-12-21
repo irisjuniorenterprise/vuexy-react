@@ -42,6 +42,18 @@ import avatar20 from '@src/assets/images/portrait/small/avatar-s-20.jpg'
 import '@styles/react/libs/charts/apex-charts.scss'
 
 const AnalyticsDashboard = () => {
+    const tutorials = useSelector(state => state.tutorials)
+    const dispatch = useDispatch()
+
+    const initFetch = useCallback(() => {
+      dispatch(retrieveTutorials())
+    }, [dispatch])
+
+    useEffect(() => {
+      initFetch()
+    }, [initFetch])
+
+
   // ** Context
   const { colors } = useContext(ThemeColors)
 
@@ -133,6 +145,27 @@ const AnalyticsDashboard = () => {
     <div id='dashboard-analytics'>
       <Row className='match-height'>
         <Col lg='6' sm='12'>
+
+
+          <ul className="list-group">
+            {tutorials &&
+                tutorials.map((tutorial) => (
+                    <li
+                        className={
+                          "list-group-item "
+                        }
+
+
+                    >
+                      {tutorial.id}
+                      {tutorial.name}
+                      {tutorial.createdAt}
+
+
+                    </li>
+                ))}
+          </ul>
+
           <CardCongratulations />
         </Col>
         <Col lg='3' sm='6'>
